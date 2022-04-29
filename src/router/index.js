@@ -32,6 +32,16 @@ export default new Router({
           name: 'people',
           component: () => import('@/views/echarts/map/people')
         },
+        {
+          path: '/trail',
+          name: 'trail',
+          component: () => import('@/views/echarts/map/trail')
+        },
+        {
+          path: '/3Dcity',
+          name: '3Dcity',
+          component: () => import('@/views/echarts/map/3Dcity')
+        }
       ]
     }
   ]

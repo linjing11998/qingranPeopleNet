@@ -6,16 +6,16 @@
     <input type="text" readonly="true" id="lnglat" />
   </div>
 </template>
- 
+
 <script>
 // 自定义图片
-import planeUrl from "../../../assets/icon/plane.png";
-import { lazyAMapApiLoaderInstance } from "vue-amap";
-import { format } from "echarts";
+import planeUrl from '../../../assets/icon/plane.png'
+import { lazyAMapApiLoaderInstance } from 'vue-amap'
+import { format } from 'echarts'
 export default {
-  data() {
+  data () {
     return {
-      map: "", // 地图
+      map: '', // 地图
       // 轨迹数组，格式[{},{},...]
       path: [
         // {
@@ -28,7 +28,7 @@ export default {
         //   ]
         // },
         {
-          name: "北京 -> 乌鲁木齐",
+          name: '北京 -> 乌鲁木齐',
           path: [
             [116.405289, 39.904987],
             [113.964458, 40.54664],
@@ -41,84 +41,84 @@ export default {
             [95.777529, 43.466798],
             [93.068486, 43.64009],
             [90.34669, 43.749086],
-            [87.61792, 43.793308],
-          ],
+            [87.61792, 43.793308]
+          ]
         },
         {
-          name: "北京 -> 佳木斯",
+          name: '北京 -> 佳木斯',
           path: [
             [116.405289, 39.904987],
             // [121.361221, 43.509494],
             [121.384956, 43.81677],
             [122.361221, 44.509494],
             [122.371221, 44.609494],
-            [130.361221, 46.809494],
-          ],
+            [130.361221, 46.809494]
+          ]
         },
         {
-          name: "北京 -> 漠河",
+          name: '北京 -> 漠河',
           path: [
             [116.405289, 39.904987],
-            [122.536209, 52.972134],
-          ],
+            [122.536209, 52.972134]
+          ]
         },
         {
-          name: "北京 -> 拉萨",
+          name: '北京 -> 拉萨',
           path: [
             [116.405289, 39.904987],
-            [91.131851, 29.660595],
-          ],
+            [91.131851, 29.660595]
+          ]
         },
         {
-          name: "北京 -> 丽江",
+          name: '北京 -> 丽江',
           path: [
             [116.405289, 39.904987],
-            [100.233002, 26.872053],
-          ],
+            [100.233002, 26.872053]
+          ]
         },
         {
-          name: "北京 -> 贵阳",
+          name: '北京 -> 贵阳',
           path: [
             [116.405289, 39.904987],
-            [106.713516, 26.57832],
-          ],
+            [106.713516, 26.57832]
+          ]
         },
         {
-          name: "北京 -> 深圳",
+          name: '北京 -> 深圳',
           path: [
             [116.405289, 39.904987],
-            [114.085938, 22.546988],
-          ],
+            [114.085938, 22.546988]
+          ]
         },
         {
-          name: "北京 -> 福州",
+          name: '北京 -> 福州',
           path: [
             [116.405289, 39.904987],
-            [119.306816, 26.075317],
-          ],
+            [119.306816, 26.075317]
+          ]
         },
         {
-          name: "北京 -> 佳木斯",
+          name: '北京 -> 佳木斯',
           path: [
             [116.405289, 39.904987],
-            [130.361221, 46.809494],
-          ],
-        },
-      ],
-    };
+            [130.361221, 46.809494]
+          ]
+        }
+      ]
+    }
   },
-  mounted() {
+  mounted () {
     lazyAMapApiLoaderInstance.load().then(() => {
-      this.map = new AMap.Map("test-map", {
+      this.map = new AMap.Map('test-map', {
         // zooms: [13, 18], // 地图缩放范围
         zoom: 4, // 地图缩放范围
-        center: new AMap.LngLat(116.397428, 39.90923),
-      });
+        center: new AMap.LngLat(116.397428, 39.90923)
+      })
 
-      AMapUI.load(["ui/misc/PathSimplifier"], (PathSimplifier) => {
+      AMapUI.load(['ui/misc/PathSimplifier'], (PathSimplifier) => {
         if (!PathSimplifier.supportCanvas) {
-          alert("当前环境不支持 Canvas！");
-          return;
+          alert('当前环境不支持 Canvas！')
+          return
         }
         // 创建组件实例
         var pathSimplifierIns = new PathSimplifier({
@@ -127,32 +127,32 @@ export default {
           data: this.path, // 巡航路径
           // 获取巡航路径中的路径坐标数组
           getPath: (pathData, pathIndex) => {
-            return pathData.path;
+            return pathData.path
           },
           renderOptions: {
             // 轨迹线的样式
             pathLineStyle: {
-              strokeStyle: "#46bee9",
+              strokeStyle: '#46bee9',
               lineWidth: 1,
-              dirArrowStyle: true,
+              dirArrowStyle: true
             },
             // 航线选中样式
             pathLineSelectedStyle: {
-              strokeStyle: "white",
+              strokeStyle: 'white',
               lineWidth: 3,
               borderWidth: 1,
-              borderStyle: "#46bee9",
-              dirArrowStyle: null,
+              borderStyle: '#46bee9',
+              dirArrowStyle: null
             }
           }
         })
 
-        function onload() {
-          pathSimplifierIns.renderLater();
+        function onload () {
+          pathSimplifierIns.renderLater()
         }
 
-        function onerror(e) {
-          alert("图片加载失败！");
+        function onerror (e) {
+          alert('图片加载失败！')
         }
         // 创建巡航器
         // var pathNavigator = pathSimplifierIns.createPathNavigator(0, { // 关联第一条轨迹
@@ -194,7 +194,7 @@ export default {
               // 经过路径的样式
               pathLinePassedStyle: {
                 lineWidth: 1,
-                strokeStyle: "white",
+                strokeStyle: 'white',
                 dirArrowStyle: null
               }
             }
