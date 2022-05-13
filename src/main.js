@@ -7,6 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import App from './App'
 import router from './router'
+
+import store from 'store'
 // 引入echarts
 // import * as echarts from 'echarts'
 // 引入高德组件
@@ -44,6 +46,7 @@ VueAMap.initAMapApiLoader({
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
